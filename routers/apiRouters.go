@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"gindemo14/controllers/api"
+	"demo-go-study/controllers/api"
 
 	"github.com/gin-gonic/gin"
 )

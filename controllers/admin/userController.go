@@ -1,8 +1,8 @@
 package admin
 
 import (
+	"demo-go-study/models"
 	"fmt"
-	"gindemo14/models"
 
 	"github.com/gin-gonic/gin"
 )

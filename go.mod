@@ -1,4 +1,4 @@
-module gindemo14
+module demo-go-study
 
 go 1.14
 

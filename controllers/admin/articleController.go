@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"gindemo14/models"
+	"demo-go-study/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

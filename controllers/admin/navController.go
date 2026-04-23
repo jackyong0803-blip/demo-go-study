@@ -1,7 +1,7 @@
 package admin
 
 import (
-	"gindemo14/models"
+	"demo-go-study/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,11 +31,11 @@ func (con NavController) Index(c *gin.Context) {
 
 	// 查询一条数据
 
-	navResult := models.Nav{Id: 21}
-	models.DB.Find(&navResult)
-	c.JSON(200, gin.H{
-		"result": navResult,
-	})
+	// navResult := models.Nav{Id: 21}
+	// models.DB.Find(&navResult)
+	// c.JSON(200, gin.H{
+	// 	"result": navResult,
+	// })
 
 	/*
 		Where条件
@@ -83,18 +83,18 @@ func (con NavController) Index(c *gin.Context) {
 
 	//使用like查询标题里面包含 会 的内容
 	// navList := []models.Nav{}
-	// models.DB.Where("title like ?", "%会%").Find(&navList)
+	// models.DB.Where("title like ?", "%导航%").Find(&navList)
 	// c.JSON(200, gin.H{
 	// 	"result": navList,
 	// })
 
 	//查询 id在3和9之间的数据 使用 between and
 
-	// navList := []models.Nav{}
-	// models.DB.Where("id between ? and ?", 3, 9).Find(&navList)
-	// c.JSON(200, gin.H{
-	// 	"result": navList,
-	// })
+	navList := []models.Nav{}
+	models.DB.Where("id between ? and ?", 3, 9).Find(&navList)
+	c.JSON(200, gin.H{
+		"result": navList,
+	})
 
 	//Or 查询id=2 或者 id=3的数据
 	// navList := []models.Nav{}
@@ -181,4 +181,20 @@ func (con NavController) Index(c *gin.Context) {
 	// })
 
 	// c.String(200, "Nav Index")
+}
+
+func (con NavController) AddBulk(c *gin.Context) {
+	// 向 nav 表中添加一百条数据
+	for i := 0; i < 100; i++ {
+		nav := models.Nav{
+			Title:  "导航" + string(rune('A'+i%26)) + string(rune('0'+i%10)),
+			Url:    "/nav" + string(rune('0'+i%10)),
+			Status: 1,
+			Sort:   i + 1,
+		}
+		models.DB.Create(&nav)
+	}
+	c.JSON(200, gin.H{
+		"message": "成功添加100条数据",
+	})
 }

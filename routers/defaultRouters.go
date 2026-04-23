@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"gindemo14/controllers/itying"
+	"demo-go-study/controllers/itying"
 
 	"github.com/gin-gonic/gin"
 )

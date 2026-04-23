@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gindemo14/models"
-	"gindemo14/routers"
+	"demo-go-study/models"
+	"demo-go-study/routers"
 	"html/template"
 
 	"github.com/gin-contrib/sessions"
