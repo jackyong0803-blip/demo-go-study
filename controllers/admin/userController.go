@@ -14,7 +14,7 @@ type UserController struct {
 func (con UserController) Index(c *gin.Context) {
 
 	//查询数据库
-	// userList := []models.User{}
+	userList := []models.User{}
 
 	// models.DB.Find(&userList)
 
@@ -23,7 +23,7 @@ func (con UserController) Index(c *gin.Context) {
 	// })
 
 	//查询age大于20的用户
-	userList := []models.User{}
+	//userList := []models.User{}
 	//models.DB.Where("age<20").Find(&userList)
 	// models.DB.Find(&userList)
 
@@ -40,13 +40,28 @@ func (con UserController) Index(c *gin.Context) {
 
 	// Or 查询
 	//models.DB.Where("id=? OR id=?", 2, 3).Find(&userList)
-	models.DB.Where("id=?", 2).Or("id=?", 3).Or("id=?", 4).Find(&userList)
+	//models.DB.Where("id=?", 2).Or("id=?", 3).Or("id=?", 4).Find(&userList)
 
+	//使用 select 返回指定字段
+	//models.DB.Select("id,username,email").Find(&userList)
+	//只返回指定的字段
+	// type UserInfo struct {
+	// 	Id       int    `json:"id"`
+	// 	Username string `json:"username"`
+	// }
+
+	// var userList []UserInfo
+	// models.DB.Model(&models.User{}).Select("id,username").Find(&userList)
+
+	// c.JSON(200, gin.H{
+	// 	"result": userList,
+	// })
+
+	//排序   order("id desc")
+	models.DB.Order("age asc").Find(&userList)
 	c.JSON(200, gin.H{
 		"result": userList,
 	})
-	//jackchen803
-	//jackyong0803@gmail.com   QAZ@123wsxedc
 
 }
 func (con UserController) Add(c *gin.Context) {
